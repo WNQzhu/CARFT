@@ -1,0 +1,5 @@
+# image: wnq_pp3
+deepspeed==0.16.6
+accelerate==1.6.0
+trl==0.16.1
+transformers==4.46.3

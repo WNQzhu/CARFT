@@ -1,0 +1,7 @@
+mv codellama_svamp_cl2_v0.sh codellama_gsm8k_cl2_v0.sh
+mv codellama_svamp_cl2_v1.sh codellama_gsm8k_cl2_v1.sh
+mv codellama_svamp_cl2_v2.sh codellama_gsm8k_cl2_v2.sh
+mv codellama_svamp_cl2_v3.sh codellama_gsm8k_cl2_v3.sh
+mv codellama_svamp_cl2_v4.sh codellama_gsm8k_cl2_v4.sh
+mv codellama_svamp_reft.sh codellama_gsm8k_reft.sh
+mv codellama_svamp_sft.sh codellama_gsm8k_sft.sh

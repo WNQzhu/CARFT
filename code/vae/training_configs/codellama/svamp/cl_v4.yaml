@@ -1,0 +1,76 @@
+# Model arguments
+model_init_kwargs:
+  model_name_or_path:  /mnt/data/users/wnq/models/reasoning/codellama/svamp/sft/checkpoint-97
+  model_name: codellama
+  attn_implementation: flash_attention_2
+  # torch_dtype: null
+  torch_dtype: bfloat16
+  low_cpu_mem_usage: False
+
+# cot
+cot:
+  instruction: "Question:\n"
+  cot_trigger: "\nAnswer reasoning:\n"
+  answer_trigger: "\nTherefore, the answer is: "
+
+
+# skip
+# dataset_kwargs:
+#  skip_prepare_dataset: True
+
+# Data training arguments
+
+## engine
+engine: 'nl'
+train_path: /mnt/data/users/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_nl.json
+eval_path: /mnt/data/users/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_test_set.json
+dataset_name: svamp
+
+max_length: 1024
+
+bf16: true
+
+
+do_eval: True
+eval_strategy: "epoch"
+# eval_strategy: "no"
+# eval_steps: 10
+# no
+# steps
+# epoch
+# eval_steps: 400
+gradient_accumulation_steps: 2
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+hub_model_id: cl-v4-exps
+learning_rate: 3.0e-7
+log_level: info
+logging_steps: 500
+packing: false
+num_train_epochs: 60
+# override num_train_epochs for test
+# max_steps: 4
+optim: adamw_torch
+output_dir: /mnt/data/users/wnq/models/reasoning/codellama/svamp/cl_v4
+run_name: codellama-cl_v4-svamp
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 32
+push_to_hub: false
+metric_for_best_model: "myacc"
+save_strategy: "epoch"
+# save_steps: 10
+report_to:
+- none
+save_total_limit: 3
+seed: 42
+world_size: 8
+
+load_best_model_at_end: True
+
+# cl coef
+
+ddp_timeout: 3600
+
+cl_coef: 1
+disable_tqdm: True

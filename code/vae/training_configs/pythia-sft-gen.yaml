@@ -1,0 +1,68 @@
+# Model arguments
+model_init_kwargs:
+  model_name_or_path: /home/wnq/models/EleutherAI/pythia-14m
+  model_name: pythia
+  # attn_implementation: flash_attention_2
+  # torch_dtype: null
+  torch_dtype: bfloat16
+  low_cpu_mem_usage: False
+
+# cot
+cot:
+  instruction: "Question:\n"
+  cot_trigger: "\nAnswer reasoning:\n"
+  answer_trigger: "\nTherefore, the answer is: "
+
+
+# skip
+dataset_kwargs:
+  skip_prepare_dataset: True
+
+# Data training arguments
+
+## engine
+engine: 'nl'
+# engine: 'python'
+train_path: /home/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_nl.json
+# train_path: /home/wnq/bank/bundle.rollout/code/mwp_ReFT/data/gsm8k_python_sdp.json
+eval_path: /home/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_test_set.json
+dataset_name: svamp
+
+max_length: 1024
+
+bf16: true
+
+
+do_eval: True
+eval_strategy: "steps"
+eval_steps: 2
+# no
+# steps
+# epoch
+# eval_steps: 400
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+hub_model_id: sft-exps
+learning_rate: 2.0e-5
+log_level: info
+logging_steps: 1
+lr_scheduler_type: cosine
+packing: false
+num_train_epochs: 5
+# override num_train_epochs for test
+#max_steps: 10
+optim: adamw_torch
+output_dir: sft-outputs/pythia-base-sft
+run_name: pythia-base-sft
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 1
+push_to_hub: false
+save_strategy: "steps"
+save_steps: 1000
+report_to:
+- none
+save_total_limit: 3
+seed: 42
+warmup_ratio: 0.1

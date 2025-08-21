@@ -1,0 +1,67 @@
+# Model arguments
+model_init_kwargs:
+  model_name_or_path: /mnt/data/users/wnq/models/Qwen2.5-7B-Instruct
+  model_name: qwen_2_5
+  attn_implementation: flash_attention_2
+  # torch_dtype: null
+  torch_dtype: bfloat16
+  low_cpu_mem_usage: False
+
+# cot
+cot:
+  instruction: "Question:\n"
+  cot_trigger: "\nAnswer reasoning:\n"
+  answer_trigger: "\nTherefore, the answer is: "
+
+
+# skip
+dataset_kwargs:
+  skip_prepare_dataset: True
+
+# Data training arguments
+
+## engine
+engine: 'nl'
+train_path: /mnt/data/users/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_nl.json
+eval_path: /mnt/data/users/wnq/bank/bundle.rollout/code/mwp_ReFT/data/svamp_test_set.json
+dataset_name: svamp
+
+max_length: 1024
+
+bf16: true
+
+
+do_eval: True
+eval_strategy: "epoch"
+# eval_strategy: "no"
+# eval_steps: 10
+# no
+# steps
+# epoch
+# eval_steps: 400
+gradient_accumulation_steps: 4
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+hub_model_id: sft-exps
+learning_rate: 1.0e-5
+log_level: info
+logging_steps: 100
+packing: false
+num_train_epochs: 60
+# override num_train_epochs for test
+# max_steps: 4
+optim: adamw_torch
+output_dir: /mnt/data/users/wnq/models/reasoning/qwen_2_5/svamp/sft
+run_name: qwen_2_5-sft-svamp
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 32
+push_to_hub: false
+metric_for_best_model: "myacc"
+save_strategy: "epoch"
+# save_steps: 10
+report_to:
+- none
+save_total_limit: 60
+seed: 42
+load_best_model_at_end: True
