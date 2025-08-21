@@ -1,0 +1,5 @@
+Source code for our paper:
+
+CARFT: Boosting LLM Reasoning via Contrastive Learning with Annotated Chain-of-Thought-based Reinforced Fine-Tuning
+
+please use cl_trainer_v4 to reproduce the results in the paper.
