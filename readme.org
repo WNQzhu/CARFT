@@ -6,7 +6,7 @@ CARFT: Boosting LLM Reasoning via Contrastive Learning with Annotated Chain-of-T
 please use cl_trainer_v4 to reproduce the results in the paper.
 
 
-**** wechat
+**** Introduction (In Chinese)
 https://mp.weixin.qq.com/s/E7H3DCri6_xmBLwUv485Zw
 
 
